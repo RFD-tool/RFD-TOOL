@@ -2,6 +2,12 @@
 
 RFD tool
 
+## Cd into django-adminlte-master
+
+```
+cd django-adminlte-master
+```
+
 ## Commands to run
 
 ### Activate Venv
