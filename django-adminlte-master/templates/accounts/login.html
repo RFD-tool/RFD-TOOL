@@ -1,76 +1,105 @@
 {% extends 'layouts/auth_base.html' %}
+{% load static %}
 
-{% block title %} Log in {% endblock title %}
+{% block title %} User Login {% endblock title %}
 
 {% block bodyclass %} login-page {% endblock bodyclass %}
 
 {% block content %}
-<div class="login-box">
-  <div class="login-logo">
-    <a href="/"><b>Admin</b>LTE</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
 
-      <form method="post">
-        {% csrf_token %}
+<style>
+  body {
+    background-color: #f2f3f5;
+  }
 
-        {% if form.non_field_errors %}
-          {% for error in form.non_field_errors  %}
-            <small class="text-danger mb-3">{{ error }}</small>
-          {% endfor %}
-        {% endif %}
+  .rfq-login-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+  }
 
-        {% for field in form %}
-        <div class="input-group mb-3">
-          {{field}}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas {% if field.name == 'username' %} fa-user {% else %}  fa-lock {% endif %}"></span>
-            </div>
-          </div>
-        </div>
-        <small class="text-danger">{{ field.errors }}</small>
+  .rfq-login-box {
+    width: 520px;
+    background: #ffffff;
+    border: 3px solid #6d6d6d;
+    padding: 35px 40px;
+  }
+
+  .rfq-header {
+    font-size: 26px;
+    font-weight: 700;
+    color: #e6007e;
+    margin-bottom: 6px;
+  }
+
+  .rfq-subtitle {
+    color: #555;
+    margin-bottom: 28px;
+  }
+
+  .form-group label {
+    font-weight: 600;
+  }
+
+  .btn-login {
+    background-color: #5a6f8f;
+    color: #fff;
+    border-radius: 2px;
+  }
+
+  .btn-login:hover {
+    background-color: #4c5f7a;
+    color: #fff;
+  }
+
+  .login-links a {
+    font-size: 14px;
+    color: #6c757d;
+    margin-right: 15px;
+  }
+
+  .login-links a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="rfq-login-wrapper">
+  <div class="rfq-login-box">
+
+    <div class="rfq-header">Welcome to VOSS!</div>
+    <div class="rfq-subtitle">Please sign-in to your account</div>
+
+    <form method="post">
+      {% csrf_token %}
+
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+          <small class="text-danger d-block mb-2">{{ error }}</small>
         {% endfor %}
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
+      {% endif %}
 
-      <!--
-      <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
+      <div class="form-group">
+        <label>User ID</label>
+        {{ form.username }}
+        <small class="text-danger">{{ form.username.errors }}</small>
       </div>
-      -->
-      <!-- /.social-auth-links -->
 
-      <p class="mt-5 mb-2 text-center">
-        <a href="{% url 'password_reset' %}">Reset Pass</a>
-        &bull;
-        <a href="{% url 'register' %}" class="text-center">Sign UP</a>
-      </p>
-    </div>
-    <!-- /.login-card-body -->
+      <div class="form-group">
+        <label>Password</label>
+        {{ form.password }}
+        <small class="text-danger">{{ form.password.errors }}</small>
+      </div>
+
+      <div class="login-links mb-3">
+        <a href="{% url 'password_reset' %}">Change Password</a>
+        <a href="{% url 'password_reset' %}">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn btn-login btn-block">
+        Sign in
+      </button>
+    </form>
+
   </div>
 </div>
 
