@@ -118,3 +118,8 @@
 
 ---
 [Django AdminLTE](https://app-generator.dev/product/adminlte/django/) - Open-Source **Django** Starter provided by [App Generator](https://app-generator.dev)
+git status	        Shows what is modified	    Middle of the day.
+git add .	        Stages all changes	        Before committing.
+git commit -m "..."	Saves a version	            After finishing a task.
+git push	        Uploads to GitHub	        End of the day.
+new push
